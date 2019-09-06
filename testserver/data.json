@@ -1,5 +1,5 @@
 {
-    "checks": {
+    "check": {
         "Check 1": "OK",
         "Check 2": "Error",
         "Check 3": "go go go"
