@@ -1,12 +1,36 @@
-let changeColor = document.getElementById('changeColor');
-let content = document.getElementById('changeColor');
+let content = document.getElementById('content');
+let image = document.getElementById('stateImg');
 
-chrome.storage.sync.get('color', function(data) {
-    changeColor.style.backgroundColor = data.color;
-    changeColor.setAttribute('value', data.color);
-});
+function renderChecks(checks) {
+    let newContent = "<pre>";
+    for (var key in response) {
+        newContent+= key + ": " + response[key] + "<br>";
+    }
+    content.innerHTML = newContent + "</pre>";
+    image.src="done.png";
+}
 
-changeColor.onclick = function(element) {
+function renderError(error) {
+    content.innerHTML = "<pre>" + error + "</pre>";
+    image.src="error.png";
+}
+
+function postData(url, data = {}) {
+      return fetch(url, {
+          method: 'POST',
+          mode: 'no-cors',
+          cache: 'no-cache',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+          redirect: 'follow',
+          referrer: 'no-referrer',
+          body: JSON.stringify(data),
+      }).then(response => response.json());
+}
+
+function onLoad() {
+    image.src="loading.gif";
     postData('http://localhost:3000/check', {
         content: document.body.innerHTML,
         url: window.location.href
@@ -18,35 +42,12 @@ changeColor.onclick = function(element) {
             throw new Error('Something went wrong on api server!');
         }
     }).then(response => {
-        showChecks(response)
+        renderChecks(response)
         console.debug(response);
     }).catch(error => {
+        renderError(error);
         console.error(error);
     });;
-};
-
-function showChecks(checks) {
-    let newContent = "<pre>";
-    for (var key in response) {
-        newContent+= key + ": " + response[key] + "<br>";
-    }
-    content.innerHTML = newContent + "</pre>";
 }
 
-function postData(url = '', data = {}) {
-    // Default options are marked with *
-      return fetch(url, {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          mode: 'no-cors', // no-cors, cors, *same-origin
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-        //   credentials: 'same-origin', // include, *same-origin, omit
-          headers: {
-              'Content-Type': 'application/json',
-              // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          redirect: 'follow', // manual, *follow, error
-          referrer: 'no-referrer', // no-referrer, *client
-          body: JSON.stringify(data), // body data type must match "Content-Type" header
-      })
-      .then(response => response.json()); // parses JSON response into native JavaScript objects 
-}
+onLoad();
