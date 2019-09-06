@@ -7,8 +7,7 @@ chrome.storage.sync.get('color', function(data) {
 });
 
 changeColor.onclick = function(element) {
-    const request = new Request('http://localhost:3000/check');
-    postData('http://localhost:3000/', {
+    postData('http://localhost:3000/check', {
         content: document.body.innerHTML,
         url: window.location.href
     })
