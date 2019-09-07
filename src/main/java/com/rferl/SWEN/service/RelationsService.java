@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -21,27 +21,42 @@ public class RelationsService {
     @Autowired
     private CheckService checkService;
 
-    public String add(Relation relation) throws SQLException {
-        Reference reference = createReference(relation);
-        repository.add(reference);
+    List<String> listPositive = new ArrayList<>();
+    List<String> listNegative = new ArrayList<>();
 
+    public String add(Relation relation)  {
+        try {
+            createReference(relation);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return checkService.check(relation.getUrlCurrent());
     }
 
     public List<String> retrievePositives(String url) {
-        return Collections.emptyList();
+        return listPositive;
     }
 
     public List<String> retrieveNegatives(String url) {
-        return Collections.emptyList();
+        return listNegative;
     }
 
-    private Reference createReference(Relation relation) {
+    private void createReference(Relation relation) throws SQLException {
         String currentTitle = retrieveTitle(relation.getUrlCurrent());
         String otherTitle = retrieveTitle(relation.getUrlOther());
         boolean type = relation.getRelation();
         double similarity = calculateSimilarityBetweenSentences(currentTitle, otherTitle);
-        return new Reference(currentTitle, otherTitle, type, similarity);
+
+        if(similarity * 100 > 30){
+            Reference currentReference = new Reference(currentTitle, otherTitle, relation.getUrlCurrent(), type, similarity);
+            Reference otherReference = new Reference(otherTitle, currentTitle,relation.getUrlOther(), type, similarity);
+            int currentId = repository.add(currentReference);
+            int otherId = repository.add(otherReference);
+            listPositive = repository.fullfillPositive(currentId);
+            listNegative = repository.fullfillNegative(otherId);
+        }
+
+
     }
 
     private String retrieveTitle(String url) {
