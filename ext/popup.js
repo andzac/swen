@@ -11,10 +11,10 @@ function renderChecks(result) {
     for (var key in result.checkList) {
         let value = result.checkList[key];
         newContent+= "<tr><td>"+ key + "</td>";
-        if(value) {
-            newContent+= "<td style='background: #afa'><img src='done.png' width='16' height='16'>";
+        if(!value) {
+            newContent+= "<td style='background: #afa'><img src='done.png' width='24' height='24'>";
         } else {
-            newContent+= "<td style='background: red'><img src='error.png' width='16' height='16'>";
+            newContent+= "<td style='background: red'><img src='error.png' width='24' height='24'>";
         }
         newContent+= "</td></tr>";
     }
