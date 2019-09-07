@@ -6,7 +6,10 @@ let button = document.getElementById('addUrl');
 
 function mapCheckName(key) {
     let map = {
+        "containsTextLinks": "Contains Text Links",
         "hasCapsOverusage": "Has Caps Overusage", 	
+        "authorPresent": "Author Present",
+        "areImagesLinksAvailable": "Are Images Links Available",
         "moreThanOneWeekOld" : "More Than One Week Old", 	
         "onFirstApril": "On First April",
         "inBlackList": "In Black List"
