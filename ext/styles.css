@@ -1,5 +1,15 @@
 .form {
+    padding: 26px;
     display: none;
+}
+
+table {
+    font-size: 16px;
+}
+
+#content {
+    padding-left: 26px;
+    padding-right: 26px;
 }
 
 #stateImg {

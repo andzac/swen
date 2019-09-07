@@ -1,26 +1,29 @@
 <!DOCTYPE html>
   <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
       <img id="stateImg" width="32" height="32"  alt="loading"/>
       <dev id="content"> </dev>
-      <div class="form" id="form">
+      <div class="form pure-form" id="form">
         <div>
-          <input type="radio" name="urltype" value="Positive" id="Positive" checked/>
-          <label for="Positive">Positive</label>
+          <label for="Positive" class="pure-radio">
+            <input type="radio" name="urltype" value="Positive" id="Positive" checked/>
+            Positive</label>
         </div>
         <div>
-          <input type="radio" name="urltype" value="Negative" id="Negative"/>
-          <label for="Negative">Negative</label>
+          <label for="Negative" class="pure-radio">
+            <input type="radio" name="urltype" value="Negative" id="Negative"/>
+            Negative</label>
         </div>
         <div>
           <input type="url" id="url" type="url" placeholder="URL"/>
         </div>
         <div>
-          <button id="addUrl">Add</button>
+          <button id="addUrl" class="pure-button">Add</button>
         </div>
       </div>
       <script src="popup.js"></script>

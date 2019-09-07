@@ -12,9 +12,9 @@ function renderChecks(result) {
         let value = result.checkList[key];
         newContent+= "<tr><td>"+ key + "</td>";
         if(value) {
-            newContent+= "<td style='background: #afa'>+";
+            newContent+= "<td style='background: #afa'><img src='done.png' width='16' height='16'>";
         } else {
-            newContent+= "<td style='background: red'>-";
+            newContent+= "<td style='background: red'><img src='error.png' width='16' height='16'>";
         }
         newContent+= "</td></tr>";
     }
@@ -36,7 +36,7 @@ function renderChecks(result) {
     }
     newContent += "</div>";
     content.innerHTML = newContent;
-    image.src="done.png";
+    image.style.display="none";
 }
 
 function renderError(error) {
@@ -112,6 +112,6 @@ chrome.tabs.query({active: true}, function(tabs) {
     var tab = tabs[0];
     tab_title = tab.title;
     chrome.tabs.executeScript(tab.id, {
-      code: 'var result = {"content": document.all[0].outerHTML, url: window.location.href}; result'
+      code: 'var result = { url: window.location.href}; result'
     }, sendRequest);
 });
