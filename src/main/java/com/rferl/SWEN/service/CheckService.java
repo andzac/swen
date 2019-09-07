@@ -1,6 +1,5 @@
 package com.rferl.SWEN.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rferl.SWEN.model.ArticleCheckResult;
 import org.apache.http.client.HttpClient;
@@ -19,15 +18,18 @@ public class CheckService {
 
     public String check(String article) {
         try {
-            return mapper.writeValueAsString(new ArticleCheckResult());
-        } catch (JsonProcessingException e) {
+
+            ArticleCheckResult articleCheckResult = new ArticleCheckResult();
+            articleCheckResult.setInBlackList(checkIfSiteIsFake(article));
+            return mapper.writeValueAsString(articleCheckResult);
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
 
-    public String checkIfSiteIsFake(String url) throws IOException {
+    public boolean checkIfSiteIsFake(String url) throws IOException {
 
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet(url);
@@ -36,7 +38,8 @@ public class CheckService {
         request.setHeader("X-RapidAPI-Key", "10441ce356msh72b539394e91da7p142221jsnf18818f08494");
 
         ResponseHandler<String> handler = new BasicResponseHandler();
-        return client.execute(request, handler);
+        return !client.execute(request, handler).isEmpty();
+
 
 
     }
