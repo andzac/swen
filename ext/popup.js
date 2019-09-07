@@ -55,7 +55,7 @@ function postData(data = {}) {
 function sendRequest(result) {
     image.src="loading.gif";
     currentUrl = result[0].url;
-    postDataTest(result[0])
+    postData(result[0])
     .then(response => {
         if (response.status === 200) {
             return response.json();
