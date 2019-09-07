@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public class ReferenceRepository {
-    public void add(Reference reference) throws SQLException {
-        DBService.addReference(reference);
+    public int add(Reference reference) throws SQLException {
+        return DBService.addReference(reference);
     }
 
     public List<Reference> getNegatives(String url) {
@@ -23,4 +23,14 @@ public class ReferenceRepository {
 
         return Collections.emptyList();
     }
+
+    public List<String> fullfillPositive(int id) throws SQLException {
+        return DBService.selectListOfPositiveArticlesById(id);
+    }
+
+    public List<String> fullfillNegative(int id) throws SQLException {
+        return DBService.selectListOfNegativeArticlesById(id);
+    }
+
+
 }
