@@ -23,9 +23,6 @@ public class RelationsService {
     @Autowired
     private CheckService checkService;
 
-    List<TitleAndUrl> listPositive = new ArrayList<>();
-    List<TitleAndUrl> listNegative = new ArrayList<>();
-
     public String add(Relation relation) {
         try {
             createReference(relation);
@@ -51,11 +48,11 @@ public class RelationsService {
         boolean type = relation.getRelation();
         double similarity = calculateSimilarityBetweenSentences(currentTitle, otherTitle);
 
-        if (similarity * 100 >= 0) {
+        if (similarity * 100 > 30) {
             Reference currentReference = new Reference(currentUrl, otherUrl, relation.getUrlCurrent(), type, similarity);
             Reference otherReference = new Reference(otherUrl, currentUrl, relation.getUrlOther(), type, similarity);
-            int currentId = repository.add(currentReference);
-            int otherId = repository.add(otherReference);
+            repository.add(currentReference);
+            repository.add(otherReference);
         }
 
 
