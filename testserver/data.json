@@ -1,3 +1,5 @@
 {
-  "check": {}
+  "check": {
+      "checks": {"qweqwe":"qwewqe"}
+  }
 }

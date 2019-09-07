@@ -6,8 +6,8 @@ let button = document.getElementById('addUrl');
 function renderChecks(result) {
     let newContent = "<table><tr><th>check</th><th>result</th></tr>";
     
-    for (var key in result.checks) {
-        newContent+= "<tr><td>"+ key + "</td><td>" + result.checks[key] + "</td></tr>";
+    for (var key in result.checkList) {
+        newContent+= "<tr><td>"+ key + "</td><td>" + result.checkList[key] + "</td></tr>";
     }
     newContent += "</table>";
     newContent += "<div>";
@@ -34,21 +34,34 @@ function renderError(error) {
     content.innerHTML = "<pre>" + error + "</pre>";
     image.src="error.png";
 }
-function postDataTest(url, data = {}) {
-    return fetch(url);
+function postDataTEST(url, data = {}) {
+    return fetch(url).then(response => {
+        if (response.status === 200) {
+            return response.json();
+        } else {
+            throw new Error("Error! " + JSON.stringify(response));
+        }
+    });
 }
 function postData(url, data = {}) {
-      return fetch(url, {
-          method: 'POST',
-          mode: 'no-cors',
-          cache: 'no-cache',
-          headers: {
+    return fetch(url, {
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
               'Content-Type': 'application/json',
-          },
-          redirect: 'follow',
-          referrer: 'no-referrer',
-          body: JSON.stringify(data),
-      });
+        },
+        redirect: 'follow',
+        credentials: 'omit',
+        referrer: 'no-referrer',
+        credentials: 'same-origin',
+        body: JSON.stringify(data),
+    }).then(function(response) {
+        if (response.status === 200) {
+            return response.json();
+        } else {
+            throw new Error("Error! " + JSON.stringify(response));
+        }
+    }, (error) => {alert(error); throw error;});
 }
 
 function sendRequest(result) {
@@ -56,12 +69,6 @@ function sendRequest(result) {
     currentUrl = result[0].url;
     postData('http://localhost:3000/check', result[0])
     .then(response => {
-        if (response.status === 200) {
-            return response.json();
-        } else {
-            throw new Error(response.status + ': Something went wrong on api server!');
-        }
-    }).then(response => {
         renderChecks(response)
         console.debug(response);
     }).catch(error => {
@@ -82,7 +89,7 @@ function addUrl() {
         "urlOther": url.value,
         "relation": "Positive" === type
     };
-    postData('http://localhost:3000/add', newUrl).then(()=>{
+    postData('http://localhost:3000/add', newUrl).then((result)=>{
         url.value="";
     }).catch((error)=> {
         alert(error);
