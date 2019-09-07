@@ -147,7 +147,9 @@ public class CheckService {
 
     private boolean checkIfOutOfDate(String content) {
         LocalDateTime dateTime = retrieveDate(content);
-        return dateTime != null && LocalDateTime.now().minus(7, ChronoUnit.DAYS).isBefore(dateTime);
+        if (dateTime == null) return false;
+        LocalDateTime lastWeek = LocalDateTime.now().minus(7, ChronoUnit.DAYS);
+        return !lastWeek.isBefore(dateTime);
     }
 
     private LocalDateTime retrieveDate(String content) {
