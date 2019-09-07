@@ -1,15 +1,24 @@
 let content = document.getElementById('content');
+let form = document.getElementById('form');
 let image = document.getElementById('stateImg');
 let currentUrl = "";
 let button = document.getElementById('addUrl');
 
 function renderChecks(result) {
-    let newContent = "<table><tr><th>check</th><th>result</th></tr>";
+    let newContent = "<table class='pure-table pure-table-bordered' style='width:100%'>"+
+    "<thead><tr><th>check</th><th>result</th></tr></thead><tbody>";
     
     for (var key in result.checkList) {
-        newContent+= "<tr><td>"+ key + "</td><td>" + result.checkList[key] + "</td></tr>";
+        let value = result.checkList[key];
+        newContent+= "<tr><td>"+ key + "</td>";
+        if(value) {
+            newContent+= "<td style='background: #afa'><img src='done.png' width='16' height='16'>";
+        } else {
+            newContent+= "<td style='background: red'><img src='error.png' width='16' height='16'>";
+        }
+        newContent+= "</td></tr>";
     }
-    newContent += "</table>";
+    newContent += "</tbody></table>";
     newContent += "<div>";
     if(result.positive && result.positive.length > 0) {
         newContent += '<div class="positive"><ul>';
@@ -27,7 +36,7 @@ function renderChecks(result) {
     }
     newContent += "</div>";
     content.innerHTML = newContent;
-    image.src="done.png";
+    image.style.display="none";
 }
 
 function renderError(error) {
@@ -61,15 +70,17 @@ function postData(url, data = {}) {
         } else {
             throw new Error("Error! " + JSON.stringify(response));
         }
-    }, (error) => {alert(error); throw error;});
+    }, (error) => { throw error;});
 }
 
 function sendRequest(result) {
     image.src="loading.gif";
+    image.style.display = "block";
     currentUrl = result[0].url;
     postData('http://localhost:3000/check', result[0])
     .then(response => {
-        renderChecks(response)
+        renderChecks(response);
+        form.style.display = "block";
         console.debug(response);
     }).catch(error => {
         renderError(error);
@@ -78,6 +89,8 @@ function sendRequest(result) {
 }
 
 function addUrl() {
+    image.src="loading.gif";
+    image.style.display="block";
     let type = document.querySelector('input[name="urltype"]:checked').value;
     let url = document.getElementById('url');
     if(!url.value) {
@@ -91,7 +104,9 @@ function addUrl() {
     };
     postData('http://localhost:3000/add', newUrl).then((result)=>{
         url.value="";
+        image.style.display="none";
     }).catch((error)=> {
+        image.style.display="none";
         alert(error);
     });
 }
@@ -101,6 +116,6 @@ chrome.tabs.query({active: true}, function(tabs) {
     var tab = tabs[0];
     tab_title = tab.title;
     chrome.tabs.executeScript(tab.id, {
-      code: 'var result = {"content": document.all[0].outerHTML, url: window.location.href}; result'
+      code: 'var result = { url: window.location.href}; result'
     }, sendRequest);
 });
