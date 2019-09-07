@@ -5,6 +5,10 @@ public class CheckList {
     private boolean isOnFirstApril;
     private boolean isMoreThanOneWeekOld;
     private boolean hasCapsOverusage;
+    private boolean containsTextLinks;
+    private boolean areImagesLinksAvailable;
+    private boolean isAuthorPresent;
+
 
     public CheckList(boolean isInBlackList, boolean isOnFirstApril) {
         this.isInBlackList = isInBlackList;
@@ -42,5 +46,29 @@ public class CheckList {
 
     public void setInBlackList(boolean inBlackList) {
         this.isInBlackList = inBlackList;
+    }
+
+    public boolean isContainsTextLinks() {
+        return containsTextLinks;
+    }
+
+    public void setContainsTextLinks(boolean containsTextLinks) {
+        this.containsTextLinks = containsTextLinks;
+    }
+
+    public boolean isAreImagesLinksAvailable() {
+        return areImagesLinksAvailable;
+    }
+
+    public void setAreImagesLinksAvailable(boolean areImagesLinksAvailable) {
+        this.areImagesLinksAvailable = areImagesLinksAvailable;
+    }
+
+    public boolean isAuthorPresent() {
+        return isAuthorPresent;
+    }
+
+    public void setAuthorPresent(boolean authorPresent) {
+        isAuthorPresent = authorPresent;
     }
 }
