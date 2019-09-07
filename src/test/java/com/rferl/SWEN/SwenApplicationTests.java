@@ -10,6 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.rferl.SWEN.service.SimilarityService.printSimilarity;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class SwenApplicationTests {
@@ -24,6 +26,30 @@ public class SwenApplicationTests {
         ScanRFERL4MetaService scanRFERL4MetaService = new ScanRFERL4MetaService();
         scanRFERL4MetaService.checkUrlForRFLRL(urls);
         Assert.assertTrue("Should return true: ", scanRFERL4MetaService.checkUrlForRFLRL(urls));
+
+
+    }
+
+    @Test
+    public void testSimilarity(){
+        printSimilarity("", "");
+        printSimilarity("1234567890", "1");
+        printSimilarity("1234567890", "123");
+        printSimilarity("1234567890", "1234567");
+        printSimilarity("1234567890", "1234567890");
+        printSimilarity("1234567890", "1234567980");
+        printSimilarity("47/2010", "472010");
+        printSimilarity("47/2010", "472011");
+        printSimilarity("47/2010", "AB.CDEF");
+        printSimilarity("47/2010", "4B.CDEFG");
+        printSimilarity("47/2010", "AB.CDEFG");
+        printSimilarity("The quick fox jumped", "The fox jumped");
+        printSimilarity("The quick fox jumped", "The fox");
+        printSimilarity("The quick fox jumped", "The quick fox jumped off the balcany");
+        printSimilarity("kitten", "sitting");
+
+        //
+        printSimilarity("U.S. Lawmakers Condemn Russia's Election 'Failure,' Crackdown Ahead Of Votes", "U.S., Russian Officials To Discuss Counterterrorism In Vienna Next Week");
 
     }
 
