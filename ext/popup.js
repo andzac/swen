@@ -4,13 +4,26 @@ let image = document.getElementById('stateImg');
 let currentUrl = "";
 let button = document.getElementById('addUrl');
 
+function mapCheckName(key) {
+    let map = {
+        "containsTextLinks": "Contains Text Links",
+        "hasCapsOverusage": "Has Caps Overusage", 	
+        "authorPresent": "Author Present",
+        "areImagesLinksAvailable": "Are Images Links Available",
+        "moreThanOneWeekOld" : "More Than One Week Old", 	
+        "onFirstApril": "On First April",
+        "inBlackList": "In Black List"
+    }
+    return map[key] ? map[key] : key;
+}
+
 function renderChecks(result) {
     let newContent = "<table class='pure-table pure-table-bordered' style='width:100%'>"+
     "<thead><tr><th>check</th><th>result</th></tr></thead><tbody>";
     
     for (var key in result.checkList) {
         let value = result.checkList[key];
-        newContent+= "<tr><td>"+ key + "</td>";
+        newContent+= "<tr><td>"+ mapCheckName(key) + "</td>";
         if(!value) {
             newContent+= "<td style='background: #afa'><img src='done.png' width='24' height='24'>";
         } else {
