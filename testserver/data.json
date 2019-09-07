@@ -1,13 +1,3 @@
 {
-    "check": {
-        "checks": {
-            "Check 1": "OK",
-            "Check 2": "OK",
-            "Check 3": "OK",
-            "Check 4": "OK",
-            "Check 5": "OK"
-        },
-        "positive": ["http://google.com"],
-        "negative": ["http://yandex.ru"]
-    }
+  "check": {}
 }

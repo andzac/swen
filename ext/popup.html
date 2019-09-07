@@ -1,12 +1,26 @@
 <!DOCTYPE html>
   <html>
     <head>
-      <style>
-      </style>
     </head>
     <body>
       <img id="stateImg" width="32" height="32"  alt="loading"/>
       <dev id="content"> </dev>
+      <div class="form">
+        <div>
+          <input type="radio" name="urltype" value="Positive" id="Positive" checked/>
+          <label for="Positive">Positive</label>
+        </div>
+        <div>
+          <input type="radio" name="urltype" value="Negative" id="Negative"/>
+          <label for="Negative">Negative</label>
+        </div>
+        <div>
+          <input type="url" id="url" type="url" placeholder="URL"/>
+        </div>
+        <div>
+          <button id="addUrl">Add</button>
+        </div>
+      </div>
       <script src="popup.js"></script>
     </body>
 </html>

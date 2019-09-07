@@ -1,5 +1,8 @@
+let host = 'http://localhost:3000/check';
 let content = document.getElementById('content');
 let image = document.getElementById('stateImg');
+let currentUrl = "";
+let button = document.getElementById('addUrl');
 
 function renderChecks(result) {
     let newContent = "<table><tr><th>check</th><th>result</th></tr>";
@@ -32,11 +35,11 @@ function renderError(error) {
     content.innerHTML = "<pre>" + error + "</pre>";
     image.src="error.png";
 }
-function postDataTest(url, data = {}) {
-    return fetch(url);
+function postDataTest(data = {}) {
+    return fetch(host);
 }
-function postData(url, data = {}) {
-      return fetch(url, {
+function postData(data = {}) {
+      return fetch(host, {
           method: 'POST',
           mode: 'no-cors',
           cache: 'no-cache',
@@ -51,7 +54,8 @@ function postData(url, data = {}) {
 
 function sendRequest(result) {
     image.src="loading.gif";
-    postData('http://localhost:3000/check', result[0])
+    currentUrl = result[0].url;
+    postDataTest(result[0])
     .then(response => {
         if (response.status === 200) {
             return response.json();
@@ -67,6 +71,22 @@ function sendRequest(result) {
     });;
 }
 
+function addUrl() {
+    let type = document.querySelector('input[name="urltype"]:checked').value;
+    let url = document.getElementById('url');
+    if(!url.value) {
+        alert("Put url first.");
+        return;
+    }
+    let newUrl = {
+        "urlCurrent": currentUrl,
+        "urlOther": url,
+        "relation": "Positive" === type
+    };
+    postData(newUrl);
+}
+
+button.addEventListener('click', addUrl);
 chrome.tabs.query({active: true}, function(tabs) {
     var tab = tabs[0];
     tab_title = tab.title;
