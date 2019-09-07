@@ -12,5 +12,4 @@ public class ArticleCheckResult {
     public void setInBlackList(boolean inBlackList) {
         this.isInBlackList = inBlackList;
     }
-
 }
