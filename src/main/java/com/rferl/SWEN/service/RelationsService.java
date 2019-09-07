@@ -1,6 +1,5 @@
 package com.rferl.SWEN.service;
 
-import com.rferl.SWEN.model.ArticleCheckResult;
 import com.rferl.SWEN.model.Reference;
 import com.rferl.SWEN.model.Relation;
 import com.rferl.SWEN.repository.ReferenceRepository;

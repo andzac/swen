@@ -11,7 +11,16 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.time.LocalDateTime;
+import java.time.Month;
+import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class CheckService {
@@ -20,18 +29,39 @@ public class CheckService {
     private RelationsService relationsService;
     private ObjectMapper mapper = new ObjectMapper();
 
+    private Pattern dateTimePattern = Pattern.compile("\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}");
+
     public String check(String url) {
         try {
-            return mapper.writeValueAsString(createCheckResult(url));
+            String content = getUrlContents(url);
+            return mapper.writeValueAsString(createCheckResult(url, content));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public ArticleCheckResult createCheckResult(String url) {
+    private static String getUrlContents(String strUrl) {
+        StringBuilder content = new StringBuilder();
         try {
-            CheckList checkList = new CheckList(checkIfSiteIsFake(url));
+            URL url = new URL(strUrl);
+            URLConnection urlConnection = url.openConnection();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
+                content.append(line).append("\n");
+            }
+            bufferedReader.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return content.toString();
+    }
+
+    private ArticleCheckResult createCheckResult(String url, String content) {
+        try {
+            CheckList checkList = new CheckList(checkIfSiteIsFake(url),
+                    checkIfPublishedInFirstApril(content));
             return new ArticleCheckResult(checkList,
                     relationsService.retrievePositives(url),
                     relationsService.retrieveNegatives(url));
@@ -52,5 +82,15 @@ public class CheckService {
 
         ResponseHandler<String> handler = new BasicResponseHandler();
         return !client.execute(request, handler).isEmpty();
+    }
+
+    private boolean checkIfPublishedInFirstApril(String content) {
+        Matcher matcher = dateTimePattern.matcher(content);
+        if (matcher.find()) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            LocalDateTime dateTime = LocalDateTime.parse(matcher.group(), formatter);
+            return dateTime.getDayOfMonth() == 1 && Month.APRIL.equals(dateTime.getMonth());
+        }
+        return false;
     }
 }
