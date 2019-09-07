@@ -6,8 +6,8 @@ let button = document.getElementById('addUrl');
 function renderChecks(result) {
     let newContent = "<table><tr><th>check</th><th>result</th></tr>";
     
-    for (var key in result.checks) {
-        newContent+= "<tr><td>"+ key + "</td><td>" + result.checks[key] + "</td></tr>";
+    for (var key in result.checkList) {
+        newContent+= "<tr><td>"+ key + "</td><td>" + result.checkList[key] + "</td></tr>";
     }
     newContent += "</table>";
     newContent += "<div>";

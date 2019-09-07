@@ -16,7 +16,7 @@ public class RelationsService {
         String currentTitle = retrieveTitle(relation.getUrlCurrent());
         String otherTitle = retrieveTitle(relation.getUrlOther());
         System.out.println(calculateSimilarityBetweenSentences(currentTitle, otherTitle));
-        return "";
+        return "{}";
     }
 
     public List<String> retrievePositives(String url) {
