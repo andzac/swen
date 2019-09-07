@@ -1,0 +1,1 @@
+INSERT INTO ARTICLES (url) VALUES('http://www.we.are.fucked.com/');

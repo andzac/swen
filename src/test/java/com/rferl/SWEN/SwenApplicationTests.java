@@ -7,6 +7,10 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,5 +62,25 @@ public class SwenApplicationTests {
     public static void printSimilarity(String s, String t) {
         System.out.println(String.format(
                 "%.3f is the similarity between \"%s\" and \"%s\"", calculateSimilarityBetweenSentences(s, t), s, t));
+    }
+
+
+    @Test
+    public void writeOnDB() throws SQLException {
+        //  Database credentials
+        final String DB_URL = "jdbc:h2:C:/data/sample";
+        final String USER = "sa";
+        final String PASS = "";
+
+
+
+        Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
+        PreparedStatement st = connection.prepareStatement(
+                "INSERT INTO ARTICLES (url) VALUES(?);");
+        st.setString(1, "todo.getUser()");
+        st.execute();
+        st.close();
+
+
     }
 }
