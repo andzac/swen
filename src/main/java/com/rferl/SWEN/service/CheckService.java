@@ -87,7 +87,7 @@ public class CheckService {
     private boolean checkIfPublishedInFirstApril(String content) {
         Matcher matcher = dateTimePattern.matcher(content);
         if (matcher.find()) {
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
             LocalDateTime dateTime = LocalDateTime.parse(matcher.group(), formatter);
             return dateTime.getDayOfMonth() == 1 && Month.APRIL.equals(dateTime.getMonth());
         }
