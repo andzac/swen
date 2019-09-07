@@ -95,7 +95,7 @@ public class CheckService {
 
         Document doc = Jsoup.parse(content);
         return doc.getElementsByAttributeValueContaining("name", "Author").isEmpty();
-    }
+    }   
 
     private boolean checkContainsTextLinks(String content) {
         Document doc = Jsoup.parse(content);
