@@ -18,7 +18,7 @@
         <div class="panel-heading panel-heading-custom">
             <div class="row">
                 <div class="col-sm-8 align-self-center">
-                    <h3 style="color: white">Iran Seizes 'Tugboat,' Filipino Crew In Persian Gulf</h3>
+                    <h3 style="color: white" id="myHeader">Iran Seizes 'Tugboat,' Filipino Crew In Persian Gulf</h3>
                 </div>
                 <div class="col-sm-4">
                     <div class="align-self-center pull-right">
@@ -43,33 +43,56 @@
             <div class="row">
                 <div class="col-sm-6">
                     <h4>Different opinion
-                        <button class="btn btn-success btn-circle btn-circle-sm m-1"><i class="fa fa-paper-plane-o"></i>
-                        </button>
+                        <button class="btn btn-success btn-circle btn-circle-sm m-1" id="showMdl2"><b>+</b></button>
+                        <div id="faqask2" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+                            <div class="modal-dialog modal-lg" style="margin-top:20%;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                        </button>
+                                        <h4 class="modal-title">Add Relative News Link</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input placeholder="NEWS Link" class="form-control form-group-margin input-lg"
+                                               rows="6" id="linkGet2">
+                                        <br>
+                                        <div class="clearfix">
+                                            <button class="btn btn-lg btn-block btn-flat btn-primary"
+                                                    onclick="faqsend()">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div><!-- / .modal-content -->
+                            </div><!-- / .modal-dialog -->
+                        </div>
                     </h4>
                     <ul class="list-unstyled" id="negativeNews">
                         <li>
                             <div class="thumbnail" style="border:none">
                                 <div class="col-sm-6 col-md-6 col-xs-12 image-container">
-                                    <img src="https://gdb.rferl.org/5132D96F-AADA-4F19-9A99-D9B2CB2B153B_cx0_cy5_cw0_w1023_r1_s.jpg"
+                                    <img src="https://i.dailymail.co.uk/1s/2019/09/07/02/18159022-0-Boris_Johnson_and_Carrie_Symonds_were_spotted_leaving_an_Aberdee-a-12_1567818088613.jpg"
                                          style="height:70px; margin-left:-15px;"/>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-xs-12">
-                                    <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam
-                                        placerat, velit a fermentum fermentum</p>
+                                    <p style="font-size:10px; color:#03225C;">
+                                        <a href="https://www.dailymail.co.uk/news/article-7438281/Boris-Johnson-prison-refuses-delay-Brexit-Lord-MacDonald-says.html">
+                                            Boris Johnson could go to prison if he
+                                            refuses to delay Brexit, the former Director of Public Prosecutions has
+                                            said.Boris Johnson said that ...</a></p>
                                 </div>
                             </div>
                         </li>
                         <li>
                             <div class="thumbnail" style="border:none">
                                 <div class="col-sm-6 col-md-6 col-xs-12 image-container">
-                                    <img src="https://gdb.rferl.org/5132D96F-AADA-4F19-9A99-D9B2CB2B153B_cx0_cy5_cw0_w1023_r1_s.jpg"
+                                    <img src="https://i.guim.co.uk/img/media/d98a73c42755e62307d069c0697bc3859c5004c0/0_160_3500_2101/master/3500.jpg?width=300&quality=85&auto=format&fit=max&s=744e84c9792bbc63bf65f02739c264ab"
                                          style="height:70px; margin-left:-15px;"/>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-xs-12">
-                                    <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam
-                                        placerat, velit a fermentum fermentum</p>
+                                    <p style="font-size:10px; color:#03225C;"><a
+                                            href="https://www.theguardian.com/politics/2019/sep/06/boris-johnson-short-of-options-as-rebels-vow-to-secure-brexit-delay">
+                                        Brexit: Boris Johnson short of options as
+                                        rebels vow to secure delay</a></p>
                                 </div>
                             </div>
                         </li>
@@ -77,33 +100,41 @@
                 </div>
                 <div class="col-sm-6">
                     <h4>Similar opinion
-                        <button class="btn btn-success btn-circle btn-circle-sm m-1"><i class="fa fa-paper-plane-o"></i>
-                        </button>
+                        <button class="btn btn-success btn-circle btn-circle-sm m-1" id="showMdl"><b>+</b></button>
+                        <div id="faqask" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+                            <div class="modal-dialog modal-lg" style="margin-top:20%;">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                                        </button>
+                                        <h4 class="modal-title">Add Relative News Link</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input placeholder="NEWS Link" class="form-control form-group-margin input-lg"
+                                               rows="6" id="linkGet">
+                                        <br>
+                                        <div class="clearfix">
+                                            <button class="btn btn-lg btn-block btn-flat btn-primary"
+                                                    onclick="faqsend()">Submit
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div><!-- / .modal-content -->
+                            </div><!-- / .modal-dialog -->
+                        </div>
                     </h4>
                     <ul class="list-unstyled">
                         <li>
                             <div class="thumbnail" style="border:none">
                                 <div class="col-sm-6 col-md-6 col-xs-12 image-container">
-                                    <img src="https://gdb.rferl.org/5132D96F-AADA-4F19-9A99-D9B2CB2B153B_cx0_cy5_cw0_w1023_r1_s.jpg"
+                                    <img src="https://ichef.bbci.co.uk/news/660/cpsprodpb/622F/production/_108653152_mediaitem108652367.jpg"
                                          style="height:70px; margin-left:-15px;"/>
                                 </div>
                                 <div class="col-sm-6 col-md-6 col-xs-12">
-                                    <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam
-                                        placerat, velit a fermentum fe</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="thumbnail" style="border:none">
-                                <div class="col-sm-6 col-md-6 col-xs-12 image-container">
-                                    <img src="https://gdb.rferl.org/5132D96F-AADA-4F19-9A99-D9B2CB2B153B_cx0_cy5_cw0_w1023_r1_s.jpg"
-                                         style="height:70px; margin-left:-15px;"/>
-                                </div>
-                                <div class="col-sm-6 col-md-6 col-xs-12">
-                                    <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet,
-                                        consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam
-                                        placerat, velit a fermentum </p>
+                                    <p style="font-size:10px; color:#03225C;"><a
+                                            href="https://edition.cnn.com/2019/09/07/europe/boris-johnson-options-brexit-gbr-intl/index.html">Boris
+                                        Johnson's Brexit options are so bad that he might have to call a no-confidence
+                                        vote in himself</a></p>
                                 </div>
                             </div>
                         </li>
@@ -131,6 +162,6 @@
 <!--        <button id="addUrl" class="pure-button">Add</button>-->
 <!--    </div>-->
 <!--</div>-->
-    <script src="popup.js"></script>
+<script src="popup.js"></script>
 </body>
 </html>

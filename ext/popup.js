@@ -3,6 +3,7 @@ let checks = document.getElementById('checks');
 let owners = document.getElementById('owners');
 let negativeNews = document.getElementById('negativeNews');
 let positiveNews = document.getElementById('positiveNews');
+let url;
 
 function mapCheckName(key) {
     let map = {
@@ -107,34 +108,47 @@ function sendRequest(result) {
     });;
 }
 
-// function addUrl() {
-//     image.src="loading.gif";
-//     image.style.display="block";
-//     let type = document.querySelector('input[name="urltype"]:checked').value;
-//     let url = document.getElementById('url');
-//     if(!url.value) {
-//         alert("Put url first.");
-//         return;
-//     }
-//     let newUrl = {
-//         "urlCurrent": currentUrl,
-//         "urlOther": url.value,
-//         "relation": "Positive" === type
-//     };
-//     postData('http://localhost:3000/add', newUrl).then((result)=>{
-//         url.value="";
-//         image.style.display="none";
-//     }).catch((error)=> {
-//         image.style.display="none";
-//         alert(error);
-//     });
-// }
+ function addUrl() {
+     image.src="loading.gif";
+     image.style.display="block";
+     let type = document.querySelector('input[name="urltype"]:checked').value;
+     if(!url.value) {
+         alert("Put url first.");
+         return;
+     }
+     let newUrl = {
+         "urlCurrent": currentUrl,
+         "urlOther": url.value,
+         "relation": "Positive" === type
+     };
+     postData('http://localhost:3000/add', newUrl).then((result)=>{
+         url.value="";
+         image.style.display="none";
+     }).catch((error)=> {
+         image.style.display="none";
+         alert(error);
+     });
+ }
 
 // button.addEventListener('click', addUrl);
 chrome.tabs.query({active: true}, function(tabs) {
     var tab = tabs[0];
     tab_title = tab.title;
+    myHeader.innerText = tab_title;
     chrome.tabs.executeScript(tab.id, {
       code: 'var result = { url: window.location.href}; result'
     }, sendRequest);
 });
+
+$('#showMdl').click(function() {
+    $('#faqask').modal('show');
+});
+
+$('#showMdl2').click(function() {
+    $('#faqask2').modal('show');
+});
+
+function faqsend() {
+    alert("boom");
+    url =  document.getElementById("linkGet");
+}

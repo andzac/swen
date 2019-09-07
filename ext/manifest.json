@@ -7,7 +7,7 @@
         "declarativeContent"],
     "page_action": {
         "default_popup": "popup.html",
-        "default_icon": "ghost1.png"
+        "default_icon": "pen1.png"
     },
     "background": {
         "scripts": ["main.js"],
