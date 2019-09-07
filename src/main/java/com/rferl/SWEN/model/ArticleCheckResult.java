@@ -5,11 +5,11 @@ import java.util.List;
 
 public class ArticleCheckResult {
     private CheckList checkList;
-    private List<String> positives;
-    private List<String> negatives;
+    private List<TitleAndUrl> positives;
+    private List<TitleAndUrl> negatives;
     private List<String> owners;
 
-    public ArticleCheckResult(CheckList checkList, List<String> positives, List<String> negatives, List<String> owners) {
+    public ArticleCheckResult(CheckList checkList, List<TitleAndUrl> positives, List<TitleAndUrl> negatives, List<String> owners) {
         this.checkList = checkList;
         this.positives = positives;
         this.negatives = negatives;
@@ -24,19 +24,19 @@ public class ArticleCheckResult {
         this.checkList = checkList;
     }
 
-    public List<String> getPositives() {
+    public List<TitleAndUrl> getPositives() {
         return positives;
     }
 
-    public void setPositives(List<String> positives) {
+    public void setPositives(List<TitleAndUrl> positives) {
         this.positives = positives;
     }
 
-    public List<String> getNegatives() {
+    public List<TitleAndUrl> getNegatives() {
         return negatives;
     }
 
-    public void setNegatives(List<String> negatives) {
+    public void setNegatives(List<TitleAndUrl> negatives) {
         this.negatives = negatives;
     }
 

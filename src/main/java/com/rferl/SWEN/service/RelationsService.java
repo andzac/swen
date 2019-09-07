@@ -2,6 +2,7 @@ package com.rferl.SWEN.service;
 
 import com.rferl.SWEN.model.Reference;
 import com.rferl.SWEN.model.Relation;
+import com.rferl.SWEN.model.TitleAndUrl;
 import com.rferl.SWEN.repository.ReferenceRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -13,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RelationsService {
@@ -21,8 +23,8 @@ public class RelationsService {
     @Autowired
     private CheckService checkService;
 
-    List<String> listPositive = new ArrayList<>();
-    List<String> listNegative = new ArrayList<>();
+    List<TitleAndUrl> listPositive = new ArrayList<>();
+    List<TitleAndUrl> listNegative = new ArrayList<>();
 
     public String add(Relation relation)  {
         try {
@@ -33,11 +35,11 @@ public class RelationsService {
         return checkService.check(relation.getUrlCurrent());
     }
 
-    public List<String> retrievePositives(String url) {
+    public List<TitleAndUrl> retrievePositives(String url) {
         return listPositive;
     }
 
-    public List<String> retrieveNegatives(String url) {
+    public List<TitleAndUrl> retrieveNegatives(String url) {
         return listNegative;
     }
 
@@ -52,8 +54,8 @@ public class RelationsService {
             Reference otherReference = new Reference(otherTitle, currentTitle,relation.getUrlOther(), type, similarity);
             int currentId = repository.add(currentReference);
             int otherId = repository.add(otherReference);
-            listPositive = repository.fullfillPositive(currentId);
-            listNegative = repository.fullfillNegative(otherId);
+            listPositive = repository.fullfillPositive(currentId).stream().map(it -> new TitleAndUrl(retrieveTitle(it), it)).collect(Collectors.toList());
+            listNegative = repository.fullfillNegative(otherId).stream().map(it -> new TitleAndUrl(retrieveTitle(it), it)).collect(Collectors.toList());
         }
 
 
