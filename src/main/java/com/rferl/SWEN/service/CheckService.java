@@ -22,16 +22,25 @@ public class CheckService {
 
     public String check(String url) {
         try {
-            CheckList checkList = new CheckList(checkIfSiteIsFake(url));
-            ArticleCheckResult articleCheckResult = new ArticleCheckResult(checkList,
-                    relationsService.retrievePositives(url),
-                    relationsService.retrieveNegatives(url));
-            return mapper.writeValueAsString(articleCheckResult);
+            return mapper.writeValueAsString(createCheckResult(url));
         } catch (IOException e) {
             e.printStackTrace();
         }
         return null;
     }
+
+    public ArticleCheckResult createCheckResult(String url) {
+        try {
+            CheckList checkList = new CheckList(checkIfSiteIsFake(url));
+            return new ArticleCheckResult(checkList,
+                    relationsService.retrievePositives(url),
+                    relationsService.retrieveNegatives(url));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
     private boolean checkIfSiteIsFake(String url) throws IOException {
 
