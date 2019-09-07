@@ -1,11 +1,8 @@
 let image = document.getElementById('stateImg');
 let checks = document.getElementById('checks');
 let owners = document.getElementById('owners');
-
-// let content = document.getElementById('content');
-// let form = document.getElementById('form');
-// let currentUrl = "";
-// let button = document.getElementById('addUrl');
+let negativeNews = document.getElementById('negativeNews');
+let positiveNews = document.getElementById('positiveNews');
 
 function mapCheckName(key) {
     let map = {
@@ -37,45 +34,27 @@ function renderChecks(result) {
     }
     newContent += "</ul>";
     newContent2 += "</ul>";
-
+    checks.innerHTML = newContent;
+    checks2.innerHTML = newContent2;
+    
     let ownersContent = "<h3></i> About:</h3>";
-    for (var ownerName of result.owners) {
+    for (let ownerName of result.owners) {
         ownersContent += "<li>" + ownerName + "</li>";
     }
     owners.innerHTML = ownersContent;
-    // let newContent = "<table class='pure-table pure-table-bordered' style='width:100%'>"+
-    // "<thead><tr><th>check</th><th>result</th></tr></thead><tbody>";
-    
-    // for (var key in result.checkList) {
-    //     let value = result.checkList[key];
-    //     newContent+= "<tr><td>"+ mapCheckName(key) + "</td>";
-    //     if(!value) {
-    //         newContent+= "<td style='background: #afa'><img src='done.png' width='24' height='24'>";
-    //     } else {
-    //         newContent+= "<td style='background: red'><img src='error.png' width='24' height='24'>";
-    //     }
-    //     newContent+= "</td></tr>";
-    // }
-    // newContent += "</tbody></table>";
-    // newContent += "<div>";
-    // if(result.positive && result.positive.length > 0) {
-    //     newContent += '<div class="positive"><ul>';
-    //     for(let url of result.positive) {
-    //         newContent += "<li>" + url + "</li>";    
-    //     }
-    //     newContent += "</ul></div>";
-    // }
-    // if(result.negative && result.negative.length > 0) {
-    //     newContent += '<div class="negative"><ul>';
-    //     for(let url of result.negative) {
-    //         newContent += "<li>" + url + "</li>";    
-    //     }
-    //     newContent += "</ul></div>";
-    // }
-    // newContent += "</div>";
-    checks.innerHTML = newContent;
-    checks2.innerHTML = newContent2;
-    // image.style.display="none";
+
+    let negativesContent = "";
+    let imgPart = "<div class=\"thumbnail\" style=\"border:none\">"+
+                    "<div class=\"col-sm-6 col-md-6 col-xs-12 image-container\">" +
+                    "<img src=\"https://gdb.rferl.org/5132D96F-AADA-4F19-9A99-D9B2CB2B153B_cx0_cy5_cw0_w1023_r1_s.jpg\" style=\"height:70px; margin-left:-15px;\"/></div></div>";
+    for (let news of result.negatives) {
+    }
+    let positivesContent = "";
+    for (let news of result.positives) {
+
+    }
+    // {title, url};
+
 }
 
 // function renderError(error) {
