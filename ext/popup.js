@@ -5,12 +5,20 @@ let currentUrl = "";
 let button = document.getElementById('addUrl');
 
 function renderChecks(result) {
-    let newContent = "<table><tr><th>check</th><th>result</th></tr>";
+    let newContent = "<table class='pure-table pure-table-bordered' style='width:100%'>"+
+    "<thead><tr><th>check</th><th>result</th></tr></thead><tbody>";
     
     for (var key in result.checkList) {
-        newContent+= "<tr><td>"+ key + "</td><td>" + result.checkList[key] + "</td></tr>";
+        let value = result.checkList[key];
+        newContent+= "<tr><td>"+ key + "</td>";
+        if(value) {
+            newContent+= "<td style='background: #afa'>+";
+        } else {
+            newContent+= "<td style='background: red'>-";
+        }
+        newContent+= "</td></tr>";
     }
-    newContent += "</table>";
+    newContent += "</tbody></table>";
     newContent += "<div>";
     if(result.positive && result.positive.length > 0) {
         newContent += '<div class="positive"><ul>';
