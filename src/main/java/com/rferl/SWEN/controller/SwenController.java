@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.rferl.SWEN.model.Article;
 import com.rferl.SWEN.model.Relation;
 import com.rferl.SWEN.service.CheckService;
+import com.rferl.SWEN.service.DBService;
 import com.rferl.SWEN.service.RelationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,32 +26,14 @@ public class SwenController {
         Gson g = new Gson();
         Article art = g.fromJson(article, Article.class);
 
-/*
-
         // add in db
-        //  Database credentials
-        final String DB_URL = "jdbc:h2:C:/data/sample";
-        final String USER = "sa";
-        final String PASS = "";
-
-
-
-        Connection connection = DriverManager.getConnection(DB_URL, USER, PASS);
-        PreparedStatement st = connection.prepareStatement(
-                "INSERT INTO ARTICLES (url) VALUES(?);");
-        st.setString(1, "todo.getUser()");
-        st.execute();
-        st.close();
-
-        connection.close();
-
- */
-
-        return checkService.check(art.getUrl()) ;
+        String result = checkService.check(art.getUrl());
+        DBService.addArticle(art);
+        return result ;
     }
 
     @PostMapping(value = "/add", produces = "application/json")
-    public String add(@RequestBody String body) {
+    public String add(@RequestBody String body) throws SQLException {
         Gson g = new Gson();
         Relation relation = g.fromJson(body, Relation.class);
         return relationsService.add(relation);

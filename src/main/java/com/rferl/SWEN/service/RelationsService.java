@@ -1,6 +1,5 @@
 package com.rferl.SWEN.service;
 
-import com.rferl.SWEN.model.ArticleCheckResult;
 import com.rferl.SWEN.model.Reference;
 import com.rferl.SWEN.model.Relation;
 import com.rferl.SWEN.repository.ReferenceRepository;
@@ -11,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Collections;
 import java.util.List;
 
@@ -21,9 +21,10 @@ public class RelationsService {
     @Autowired
     private CheckService checkService;
 
-    public String add(Relation relation) {
+    public String add(Relation relation) throws SQLException {
         Reference reference = createReference(relation);
         repository.add(reference);
+
         return checkService.check(relation.getUrlCurrent());
     }
 
