@@ -5,7 +5,6 @@ public class CheckList {
     private boolean isOnFirstApril;
     private boolean isMoreThanOneWeekOld;
     private boolean containsTextLinks;
-    private boolean areImagesLinksAvailable;
     private boolean isAuthorPresent;
     private boolean isJokeSite;
 
@@ -13,14 +12,12 @@ public class CheckList {
                      boolean isOnFirstApril,
                      boolean isMoreThanOneWeekOld,
                      boolean containsTextLinks,
-                     boolean areImagesLinksAvailable,
                      boolean isAuthorPresent,
                      boolean isJokeSite) {
         this.isInBlackList = isInBlackList;
         this.isOnFirstApril = isOnFirstApril;
         this.isMoreThanOneWeekOld = isMoreThanOneWeekOld;
         this.containsTextLinks = containsTextLinks;
-        this.areImagesLinksAvailable = areImagesLinksAvailable;
         this.isAuthorPresent = isAuthorPresent;
         this.isJokeSite = isJokeSite;
     }
@@ -55,14 +52,6 @@ public class CheckList {
 
     public void setContainsTextLinks(boolean containsTextLinks) {
         this.containsTextLinks = containsTextLinks;
-    }
-
-    public boolean isAreImagesLinksAvailable() {
-        return areImagesLinksAvailable;
-    }
-
-    public void setAreImagesLinksAvailable(boolean areImagesLinksAvailable) {
-        this.areImagesLinksAvailable = areImagesLinksAvailable;
     }
 
     public boolean isAuthorPresent() {

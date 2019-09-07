@@ -75,7 +75,6 @@ public class CheckService {
                     checkIfPublishedInFirstApril(content),
                     checkIfOutOfDate(content),
                     checkContainsTextLinks(content),
-                    checkAreImgLinksAvailable(content),
                     checkIsAuthorPresent(content),
                     checkIsJokeSite(url));
             return new ArticleCheckResult(checkList,
@@ -96,27 +95,6 @@ public class CheckService {
 
         Document doc = Jsoup.parse(content);
         return doc.getElementsByAttributeValueContaining("name", "Author").isEmpty();
-    }
-
-    private boolean checkAreImgLinksAvailable(String content) {
-
-        Document doc = Jsoup.parse(content);
-        Elements description = doc.select("span[class=caption]");
-        for (Element desc : description) {
-            if (desc.text() != null) {
-                String fffText = String.format("img[alt='%s']", desc.text());
-                String imgSrc = doc.select(fffText).attr("src");
-
-                try {
-                   URL url = new URL(imgSrc);
-                    HttpURLConnection http = (HttpURLConnection)url.openConnection();
-                    return http.getResponseCode() == 200;
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        return true;
     }
 
     private boolean checkContainsTextLinks(String content) {
