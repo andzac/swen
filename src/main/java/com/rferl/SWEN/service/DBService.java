@@ -15,8 +15,8 @@ public class DBService {
     private static Connection connection = null;
     // private static final String SQL_SELECT_POSITIVE = "SELECT * FROM REFERENCES WHERE ID=1 AND TYPE_OF=" + String.valueOf(true);
 
-    private static final String SQL_SELECT_POSITIVE = "SELECT * FROM REFERENCES WHERE ID =? AND TYPE_OF=" + String.valueOf(true)+" ";
-    private static final String SQL_SELECT_NEGATIVE = "SELECT * FROM REFERENCES WHERE ID =? AND TYPE_OF=" + String.valueOf(false) + "";
+    private static final String SQL_SELECT_POSITIVE = "SELECT * FROM REFERENCES WHERE URL_1 =? AND TYPE_OF=" + String.valueOf(true)+" ";
+    private static final String SQL_SELECT_NEGATIVE = "SELECT * FROM REFERENCES WHERE URL_1 =? AND TYPE_OF=" + String.valueOf(false) + "";
 
 
     public static int addReference(Reference reference) throws SQLException {
@@ -57,29 +57,29 @@ public class DBService {
     }
 
 
-    public static List<String> selectListOfPositiveArticlesById(int id) throws SQLException {
+    public static List<String> selectListOfPositiveArticlesById(String url) throws SQLException {
 
         List<String> listArticles = new ArrayList<>();
         connection = DriverManager.getConnection(DB_URL, USER, PASS);
         PreparedStatement st = connection.prepareStatement(SQL_SELECT_POSITIVE);
-        st.setInt(1,id);
+        st.setString(1,url);
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
-            listArticles.add((rs.getString("full_url")));
+            listArticles.add((rs.getString("url_2")));
         }
 
         return listArticles;
     }
 
-    public static List<String> selectListOfNegativeArticlesById(int id) throws SQLException {
+    public static List<String> selectListOfNegativeArticlesById(String url) throws SQLException {
 
         List<String> listArticles = new ArrayList<>();
         connection = DriverManager.getConnection(DB_URL, USER, PASS);
         PreparedStatement st = connection.prepareStatement(SQL_SELECT_NEGATIVE);
-        st.setInt(1,id);
+        st.setString(1,url);
         ResultSet rs = st.executeQuery();
         while (rs.next()) {
-            listArticles.add((rs.getString("full_url")));
+            listArticles.add((rs.getString("url_2")));
         }
 
         return listArticles;

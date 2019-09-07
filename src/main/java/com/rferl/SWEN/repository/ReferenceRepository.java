@@ -24,12 +24,12 @@ public class ReferenceRepository {
         return Collections.emptyList();
     }
 
-    public List<String> fullfillPositive(int id) throws SQLException {
-        return DBService.selectListOfPositiveArticlesById(id);
+    public List<String> fullfillPositive(String url) throws SQLException {
+        return DBService.selectListOfPositiveArticlesById(url);
     }
 
-    public List<String> fullfillNegative(int id) throws SQLException {
-        return DBService.selectListOfNegativeArticlesById(id);
+    public List<String> fullfillNegative(String url) throws SQLException {
+        return DBService.selectListOfNegativeArticlesById(url);
     }
 
 

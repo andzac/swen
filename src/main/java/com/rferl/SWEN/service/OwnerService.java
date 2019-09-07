@@ -12,11 +12,11 @@ public class OwnerService {
     private Map<String, List<String>> owners = new HashMap<>();
 
     public OwnerService() {
-        owners.put("dailymail.co.uk", Arrays.asList("Daily Mail and General Trust plc", "Jonathan Harmsworth (shareholder)"));
-        owners.put("newspunch.com", Arrays.asList("founders: Sean Adl", "Tabatabai, Sinclair Treadway"));
-        owners.put("channel4.com", Arrays.asList("Channel 4 Television Coorporation", "UK Government Investments"));
-        owners.put("dailystar.co.uk", Collections.singletonList("Reach plc"));
-        owners.put("nytimes.com", Arrays.asList("NYT Company", "Sulzberger"));
+        owners.put("www.dailymail.co.uk", Arrays.asList("Daily Mail and General Trust plc", "Jonathan Harmsworth (shareholder)"));
+        owners.put("www.newspunch.com", Arrays.asList("founders: Sean Adl", "Tabatabai, Sinclair Treadway"));
+        owners.put("www.channel4.com", Arrays.asList("Channel 4 Television Coorporation", "UK Government Investments"));
+        owners.put("www.dailystar.co.uk", Collections.singletonList("Reach plc"));
+        owners.put("www.nytimes.com", Arrays.asList("NYT Company", "Sulzberger"));
     }
 
 

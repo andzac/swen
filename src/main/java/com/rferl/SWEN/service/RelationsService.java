@@ -26,7 +26,7 @@ public class RelationsService {
     List<TitleAndUrl> listPositive = new ArrayList<>();
     List<TitleAndUrl> listNegative = new ArrayList<>();
 
-    public String add(Relation relation)  {
+    public String add(Relation relation) {
         try {
             createReference(relation);
         } catch (SQLException e) {
@@ -35,27 +35,27 @@ public class RelationsService {
         return checkService.check(relation.getUrlCurrent());
     }
 
-    public List<TitleAndUrl> retrievePositives(String url) {
-        return listPositive;
+    public List<TitleAndUrl> retrievePositives(String url) throws SQLException {
+        return repository.fullfillPositive(url).stream().map(it -> new TitleAndUrl(retrieveTitle(it), it)).collect(Collectors.toList());
     }
 
-    public List<TitleAndUrl> retrieveNegatives(String url) {
-        return listNegative;
+    public List<TitleAndUrl> retrieveNegatives(String url) throws SQLException {
+        return repository.fullfillNegative(url).stream().map(it -> new TitleAndUrl(retrieveTitle(it), it)).collect(Collectors.toList());
     }
 
     private void createReference(Relation relation) throws SQLException {
-        String currentTitle = retrieveTitle(relation.getUrlCurrent());
-        String otherTitle = retrieveTitle(relation.getUrlOther());
+        String currentUrl = relation.getUrlCurrent();
+        String currentTitle = retrieveTitle(currentUrl);
+        String otherUrl = relation.getUrlOther();
+        String otherTitle = retrieveTitle(otherUrl);
         boolean type = relation.getRelation();
         double similarity = calculateSimilarityBetweenSentences(currentTitle, otherTitle);
 
-        if(similarity * 100 > 30){
-            Reference currentReference = new Reference(currentTitle, otherTitle, relation.getUrlCurrent(), type, similarity);
-            Reference otherReference = new Reference(otherTitle, currentTitle,relation.getUrlOther(), type, similarity);
+        if (similarity * 100 >= 0) {
+            Reference currentReference = new Reference(currentUrl, otherUrl, relation.getUrlCurrent(), type, similarity);
+            Reference otherReference = new Reference(otherUrl, currentUrl, relation.getUrlOther(), type, similarity);
             int currentId = repository.add(currentReference);
             int otherId = repository.add(otherReference);
-            listPositive = repository.fullfillPositive(currentId).stream().map(it -> new TitleAndUrl(retrieveTitle(it), it)).collect(Collectors.toList());
-            listNegative = repository.fullfillNegative(otherId).stream().map(it -> new TitleAndUrl(retrieveTitle(it), it)).collect(Collectors.toList());
         }
 
 
