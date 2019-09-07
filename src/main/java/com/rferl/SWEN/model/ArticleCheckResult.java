@@ -3,14 +3,14 @@ package com.rferl.SWEN.model;
 
 public class ArticleCheckResult {
 
-    private boolean fake = true;
+    private boolean isInBlackList;
 
-    public boolean isFake() {
-        return fake;
+    public boolean isInBlackList() {
+        return isInBlackList;
     }
 
-    public void setFake(boolean fake) {
-        this.fake = fake;
+    public void setInBlackList(boolean inBlackList) {
+        this.isInBlackList = inBlackList;
     }
 
 }
