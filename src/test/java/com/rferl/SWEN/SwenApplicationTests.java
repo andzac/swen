@@ -10,7 +10,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.rferl.SWEN.service.SimilarityService.printSimilarity;
+import static com.rferl.SWEN.service.RelationsService.calculateSimilarityBetweenSentences;
+
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -31,7 +32,7 @@ public class SwenApplicationTests {
     }
 
     @Test
-    public void testSimilarity(){
+    public void testSimilarity() {
         printSimilarity("", "");
         printSimilarity("1234567890", "1");
         printSimilarity("1234567890", "123");
@@ -54,4 +55,8 @@ public class SwenApplicationTests {
     }
 
 
+    public static void printSimilarity(String s, String t) {
+        System.out.println(String.format(
+                "%.3f is the similarity between \"%s\" and \"%s\"", calculateSimilarityBetweenSentences(s, t), s, t));
+    }
 }

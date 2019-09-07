@@ -2,11 +2,13 @@ package com.rferl.SWEN.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rferl.SWEN.model.ArticleCheckResult;
+import com.rferl.SWEN.model.CheckList;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -14,12 +16,16 @@ import java.io.IOException;
 @Service
 public class CheckService {
 
+    @Autowired
+    private RelationsService relationsService;
     private ObjectMapper mapper = new ObjectMapper();
 
-    public String check(String article) {
+    public String check(String url) {
         try {
-            ArticleCheckResult articleCheckResult = new ArticleCheckResult();
-            articleCheckResult.setInBlackList(checkIfSiteIsFake(article));
+            CheckList checkList = new CheckList(checkIfSiteIsFake(url));
+            ArticleCheckResult articleCheckResult = new ArticleCheckResult(checkList,
+                    relationsService.retrievePositives(url),
+                    relationsService.retrieveNegatives(url));
             return mapper.writeValueAsString(articleCheckResult);
         } catch (IOException e) {
             e.printStackTrace();
@@ -27,7 +33,7 @@ public class CheckService {
         return null;
     }
 
-    public boolean checkIfSiteIsFake(String url) throws IOException {
+    private boolean checkIfSiteIsFake(String url) throws IOException {
 
         HttpClient client = HttpClientBuilder.create().build();
         HttpGet request = new HttpGet(url);

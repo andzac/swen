@@ -71,13 +71,6 @@
 			<artifactId>jsoup</artifactId>
 			<version>1.11.3</version>
 		</dependency>
-
-        <dependency>
-            <groupId>com.github.DonatoMeoli</groupId>
-            <artifactId>WS4J</artifactId>
-            <version>master</version>
-        </dependency>
-
     </dependencies>
     <build>
         <plugins>
