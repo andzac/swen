@@ -7,11 +7,13 @@ public class ArticleCheckResult {
     private CheckList checkList;
     private List<String> positives;
     private List<String> negatives;
+    private List<String> owners;
 
-    public ArticleCheckResult(CheckList checkList, List<String> positives, List<String> negatives) {
+    public ArticleCheckResult(CheckList checkList, List<String> positives, List<String> negatives, List<String> owners) {
         this.checkList = checkList;
         this.positives = positives;
         this.negatives = negatives;
+        this.owners = owners;
     }
 
     public CheckList getCheckList() {
@@ -38,4 +40,11 @@ public class ArticleCheckResult {
         this.negatives = negatives;
     }
 
+    public List<String> getOwners() {
+        return owners;
+    }
+
+    public void setOwners(List<String> owners) {
+        this.owners = owners;
+    }
 }

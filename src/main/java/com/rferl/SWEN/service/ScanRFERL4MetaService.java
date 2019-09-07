@@ -9,11 +9,6 @@ import org.springframework.stereotype.Service;
 import java.io.IOException;
 import java.util.List;
 
-/**
- * @author sergiuTheRomanian
- * @implNote noRussianAllowed
- */
-
 @Service
 public class ScanRFERL4MetaService {
 

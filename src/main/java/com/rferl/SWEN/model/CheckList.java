@@ -4,17 +4,26 @@ public class CheckList {
     private boolean isInBlackList;
     private boolean isOnFirstApril;
     private boolean isMoreThanOneWeekOld;
-    private boolean hasCapsOverusage;
     private boolean containsTextLinks;
     private boolean areImagesLinksAvailable;
     private boolean isAuthorPresent;
+    private boolean isJokeSite;
 
-
-    public CheckList(boolean isInBlackList, boolean isOnFirstApril) {
+    public CheckList(boolean isInBlackList,
+                     boolean isOnFirstApril,
+                     boolean isMoreThanOneWeekOld,
+                     boolean containsTextLinks,
+                     boolean areImagesLinksAvailable,
+                     boolean isAuthorPresent,
+                     boolean isJokeSite) {
         this.isInBlackList = isInBlackList;
         this.isOnFirstApril = isOnFirstApril;
+        this.isMoreThanOneWeekOld = isMoreThanOneWeekOld;
+        this.containsTextLinks = containsTextLinks;
+        this.areImagesLinksAvailable = areImagesLinksAvailable;
+        this.isAuthorPresent = isAuthorPresent;
+        this.isJokeSite = isJokeSite;
     }
-
 
     public boolean isOnFirstApril() {
         return isOnFirstApril;
@@ -30,14 +39,6 @@ public class CheckList {
 
     public void setMoreThanOneWeekOld(boolean moreThanOneWeekOld) {
         isMoreThanOneWeekOld = moreThanOneWeekOld;
-    }
-
-    public boolean isHasCapsOverusage() {
-        return hasCapsOverusage;
-    }
-
-    public void setHasCapsOverusage(boolean hasCapsOverusage) {
-        this.hasCapsOverusage = hasCapsOverusage;
     }
 
     public boolean isInBlackList() {
@@ -70,5 +71,13 @@ public class CheckList {
 
     public void setAuthorPresent(boolean authorPresent) {
         isAuthorPresent = authorPresent;
+    }
+
+    public boolean isJokeSite() {
+        return isJokeSite;
+    }
+
+    public void setJokeSite(boolean jokeSite) {
+        isJokeSite = jokeSite;
     }
 }
