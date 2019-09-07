@@ -1,4 +1,5 @@
 let content = document.getElementById('content');
+let form = document.getElementById('form');
 let image = document.getElementById('stateImg');
 let currentUrl = "";
 let button = document.getElementById('addUrl');
@@ -61,15 +62,17 @@ function postData(url, data = {}) {
         } else {
             throw new Error("Error! " + JSON.stringify(response));
         }
-    }, (error) => {alert(error); throw error;});
+    }, (error) => { throw error;});
 }
 
 function sendRequest(result) {
     image.src="loading.gif";
+    image.style.display = "block";
     currentUrl = result[0].url;
     postData('http://localhost:3000/check', result[0])
     .then(response => {
-        renderChecks(response)
+        renderChecks(response);
+        form.style.display = "block";
         console.debug(response);
     }).catch(error => {
         renderError(error);
