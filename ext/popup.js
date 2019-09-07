@@ -1,5 +1,6 @@
 let image = document.getElementById('stateImg');
 let checks = document.getElementById('checks');
+let owners = document.getElementById('owners');
 
 // let content = document.getElementById('content');
 // let form = document.getElementById('form');
@@ -37,8 +38,11 @@ function renderChecks(result) {
     newContent += "</ul>";
     newContent2 += "</ul>";
 
-    for (var key of result.owners) {
+    let ownersContent = "<h3></i> About:</h3>";
+    for (var ownerName of result.owners) {
+        ownersContent += "<li>" + ownerName + "</li>";
     }
+    owners.innerHTML = ownersContent;
     // let newContent = "<table class='pure-table pure-table-bordered' style='width:100%'>"+
     // "<thead><tr><th>check</th><th>result</th></tr></thead><tbody>";
     
