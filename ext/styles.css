@@ -24,6 +24,13 @@ background: #128eff!important; color: #fff; }
   font-size: 0.9rem;
 }
 
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
+
 html, body{
     width: 800px;
     max-width: 100%;
