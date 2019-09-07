@@ -24,7 +24,7 @@ public class Relation {
         this.urlOther = urlOther;
     }
 
-    public boolean isRelation() {
+    public boolean getRelation() {
         return relation;
     }
 

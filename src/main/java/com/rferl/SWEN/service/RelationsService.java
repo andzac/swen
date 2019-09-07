@@ -1,9 +1,13 @@
 package com.rferl.SWEN.service;
 
+import com.rferl.SWEN.model.ArticleCheckResult;
+import com.rferl.SWEN.model.Reference;
 import com.rferl.SWEN.model.Relation;
+import com.rferl.SWEN.repository.ReferenceRepository;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -12,11 +16,15 @@ import java.util.List;
 
 @Service
 public class RelationsService {
+    @Autowired
+    private ReferenceRepository repository;
+    @Autowired
+    private CheckService checkService;
+
     public String add(Relation relation) {
-        String currentTitle = retrieveTitle(relation.getUrlCurrent());
-        String otherTitle = retrieveTitle(relation.getUrlOther());
-        System.out.println(calculateSimilarityBetweenSentences(currentTitle, otherTitle));
-        return "{}";
+        Reference reference = createReference(relation);
+        repository.add(reference);
+        return checkService.check(relation.getUrlCurrent());
     }
 
     public List<String> retrievePositives(String url) {
@@ -25,6 +33,14 @@ public class RelationsService {
 
     public List<String> retrieveNegatives(String url) {
         return Collections.emptyList();
+    }
+
+    private Reference createReference(Relation relation) {
+        String currentTitle = retrieveTitle(relation.getUrlCurrent());
+        String otherTitle = retrieveTitle(relation.getUrlOther());
+        boolean type = relation.getRelation();
+        double similarity = calculateSimilarityBetweenSentences(currentTitle, otherTitle);
+        return new Reference(currentTitle, otherTitle, type, similarity);
     }
 
     private String retrieveTitle(String url) {
