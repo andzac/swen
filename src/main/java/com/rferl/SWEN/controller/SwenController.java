@@ -18,16 +18,17 @@ public class SwenController {
     @Autowired
     private RelationsService relationsService;
 
-    @PostMapping("/check")
-    public String check(@RequestBody String article) {
-
-        Gson g = new Gson();
-        Article art = g.fromJson(article, Article.class);
-        return checkService.check(art.getUrl());
-    }
+//    @PostMapping("/check")
+//    public String check(@RequestBody String article) {
+//
+//        Gson g = new Gson();
+//        Article art = g.fromJson(article, Article.class);
+//        return checkService.check(art.getUrl());
+//    }
 
     @PostMapping("/add")
     public String add(@RequestBody String body) {
+        System.out.println(body);
         Gson g = new Gson();
         Relation relation = g.fromJson(body, Relation.class);
         return relationsService.add(relation);

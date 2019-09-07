@@ -1,4 +1,3 @@
-let host = 'http://localhost:3000/check';
 let content = document.getElementById('content');
 let image = document.getElementById('stateImg');
 let currentUrl = "";
@@ -35,11 +34,11 @@ function renderError(error) {
     content.innerHTML = "<pre>" + error + "</pre>";
     image.src="error.png";
 }
-function postDataTest(data = {}) {
-    return fetch(host);
+function postDataTest(url, data = {}) {
+    return fetch(url);
 }
-function postData(data = {}) {
-      return fetch(host, {
+function postData(url, data = {}) {
+      return fetch(url, {
           method: 'POST',
           mode: 'no-cors',
           cache: 'no-cache',
@@ -55,7 +54,7 @@ function postData(data = {}) {
 function sendRequest(result) {
     image.src="loading.gif";
     currentUrl = result[0].url;
-    postData(result[0])
+    postData('http://localhost:3000/check', result[0])
     .then(response => {
         if (response.status === 200) {
             return response.json();
@@ -80,10 +79,14 @@ function addUrl() {
     }
     let newUrl = {
         "urlCurrent": currentUrl,
-        "urlOther": url,
+        "urlOther": url.value,
         "relation": "Positive" === type
     };
-    postData(newUrl);
+    postData('http://localhost:3000/add', newUrl).then(()=>{
+        url.value="";
+    }).catch((error)=> {
+        alert(error);
+    });
 }
 
 button.addEventListener('click', addUrl);
