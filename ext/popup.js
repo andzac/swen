@@ -89,6 +89,8 @@ function sendRequest(result) {
 }
 
 function addUrl() {
+    image.src="loading.gif";
+    image.style.display="block";
     let type = document.querySelector('input[name="urltype"]:checked').value;
     let url = document.getElementById('url');
     if(!url.value) {
@@ -102,7 +104,9 @@ function addUrl() {
     };
     postData('http://localhost:3000/add', newUrl).then((result)=>{
         url.value="";
+        image.style.display="none";
     }).catch((error)=> {
+        image.style.display="none";
         alert(error);
     });
 }
