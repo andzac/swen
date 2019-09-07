@@ -18,7 +18,6 @@ public class CheckService {
 
     public String check(String article) {
         try {
-
             ArticleCheckResult articleCheckResult = new ArticleCheckResult();
             articleCheckResult.setInBlackList(checkIfSiteIsFake(article));
             return mapper.writeValueAsString(articleCheckResult);
@@ -27,7 +26,6 @@ public class CheckService {
         }
         return null;
     }
-
 
     public boolean checkIfSiteIsFake(String url) throws IOException {
 
@@ -39,8 +37,5 @@ public class CheckService {
 
         ResponseHandler<String> handler = new BasicResponseHandler();
         return !client.execute(request, handler).isEmpty();
-
-
-
     }
 }
