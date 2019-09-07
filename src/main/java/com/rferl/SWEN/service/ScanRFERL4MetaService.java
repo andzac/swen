@@ -35,7 +35,8 @@ public class ScanRFERL4MetaService {
                     for (Element desc : description
                     ) {
                         if (desc.text() != null) {
-                            String imgSrc = doc.select("img[alt=" + desc.ownText() + "]").attr("src");
+                            String fffText = String.format("img[alt='%s']", desc.text());
+                            String imgSrc = doc.select(fffText).attr("src");
                             System.out.println(imgSrc + "\n\n");
                         }
                     }

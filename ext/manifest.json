@@ -1,9 +1,8 @@
 {
-    "name": "News checker",
+    "name": "SWAN News checker",
     "description" : "Newst fakeness checker",
     "version": "1.0",
     "permissions": [
-        "storage", 
         "activeTab",
         "declarativeContent"],
     "page_action": {
