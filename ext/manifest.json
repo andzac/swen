@@ -9,6 +9,10 @@
         "default_popup": "popup.html",
         "default_icon": "logo.png"
     },
+    "content_scripts": [{
+        "matches": ["*://*/*"],
+        "js": ["content.js"]
+    }],
     "background": {
         "scripts": ["main.js"],
         "persistent": false
