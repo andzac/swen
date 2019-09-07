@@ -1,13 +1,13 @@
 {
     "name": "SWAN News checker",
-    "description" : "Newst fakeness checker",
+    "description" : "Secure Web Environment 4 News",
     "version": "1.0",
     "permissions": [
         "activeTab",
         "declarativeContent"],
     "page_action": {
         "default_popup": "popup.html",
-        "default_icon": "logo.png"
+        "default_icon": "ghost1.png"
     },
     "background": {
         "scripts": ["main.js"],

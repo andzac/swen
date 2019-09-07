@@ -1,31 +1,155 @@
 <!DOCTYPE html>
-  <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.1/build/pure-min.css" integrity="sha384-oAOxQR6DkCoMliIh8yFnu25d7Eq/PHS21PClpwjOTeU2jRSq11vu66rf90/cZr47" crossorigin="anonymous">
-        <link rel="stylesheet" href="styles.css">
-    </head>
-    <body>
-      <img id="stateImg" width="32" height="32"  alt="loading"/>
-      <dev id="content"> </dev>
-      <div class="form pure-form" id="form">
-        <div>
-          <label for="Positive" class="pure-radio">
-            <input type="radio" name="urltype" value="Positive" id="Positive" checked/>
-            Positive</label>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+<!--<img id="stateImg" width="32" height="32" alt="loading"/>-->
+<!--<dev id="content"></dev>-->
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-custom">
+            <div class="row">
+                <div class="col-sm-8 align-self-center">
+                    <h3 style="color: white">U.S. Defense Chief Signals Iran 'Inching' Could Lead Toward Talks</h3>
+                </div>
+                <div class="col-sm-4">
+                    <div class="align-self-center pull-right">
+                        <i class="fa fa-facebook-square fa-3x"></i> <i class="fa fa-twitter-square fa-3x"></i>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-          <label for="Negative" class="pure-radio">
-            <input type="radio" name="urltype" value="Negative" id="Negative"/>
-            Negative</label>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul>
+                        <li class="list-group-item"><i class="fa fa-check" style="color: green"> </i> First item</li>
+                        <li class="list-group-item"><i class="fa fa-check" style="color: green"> </i> Second item</li>
+                        <li class="list-group-item"><i class="fa fa-times" style="color: red"></i> Third item</li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <ul class="list-group">
+                        <li class="list-group-item"><i class="fa fa-times" style="color: red"></i> First item</li>
+                        <li class="list-group-item"><i class="fa fa-check" style="color: green"> </i> Second item</li>
+                        <li class="list-group-item"><i class="fa fa-times" style="color: red"></i> Third item</li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <hr>
+                </div>
+                <ul><h3><i class="fa fa-search"></i> About:</h3>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad min
+                    </li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                        labore et dolore magna aliqua. Ut enim ad min
+                    </li>
+                    <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do .</li>
+                </ul>
+            </div>
         </div>
-        <div>
-          <input type="url" id="url" type="url" placeholder="URL"/>
+        <div class="panel-heading panel-heading-custom"><h3 style="color: white">Related news links</h3></div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <h4>Different opinion
+                        <button class="btn btn-success btn-circle btn-circle-sm m-1"><i class="fa fa-paper-plane-o"></i>
+                        </button>
+                    </h4>
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="thumbnail" style="border:none">
+                                <div class="col-sm-6 col-md-6 col-xs-12 image-container">
+                                    <img src="https://gdb.rferl.org/5132D96F-AADA-4F19-9A99-D9B2CB2B153B_cx0_cy5_cw0_w1023_r1_s.jpg"
+                                         style="height:70px; margin-left:-15px;"/>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-12">
+                                    <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam
+                                        placerat, velit a fermentum fermentum</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="thumbnail" style="border:none">
+                                <div class="col-sm-6 col-md-6 col-xs-12 image-container">
+                                    <img src="https://gdb.rferl.org/5132D96F-AADA-4F19-9A99-D9B2CB2B153B_cx0_cy5_cw0_w1023_r1_s.jpg"
+                                         style="height:70px; margin-left:-15px;"/>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-12">
+                                    <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam
+                                        placerat, velit a fermentum fermentum</p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <h4>Similar opinion
+                        <button class="btn btn-success btn-circle btn-circle-sm m-1"><i class="fa fa-paper-plane-o"></i>
+                        </button>
+                    </h4>
+                    <ul class="list-unstyled">
+                        <li>
+                            <div class="thumbnail" style="border:none">
+                                <div class="col-sm-6 col-md-6 col-xs-12 image-container">
+                                    <img src="https://gdb.rferl.org/5132D96F-AADA-4F19-9A99-D9B2CB2B153B_cx0_cy5_cw0_w1023_r1_s.jpg"
+                                         style="height:70px; margin-left:-15px;"/>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-12">
+                                    <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam
+                                        placerat, velit a fermentum fe</p>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="thumbnail" style="border:none">
+                                <div class="col-sm-6 col-md-6 col-xs-12 image-container">
+                                    <img src="https://gdb.rferl.org/5132D96F-AADA-4F19-9A99-D9B2CB2B153B_cx0_cy5_cw0_w1023_r1_s.jpg"
+                                         style="height:70px; margin-left:-15px;"/>
+                                </div>
+                                <div class="col-sm-6 col-md-6 col-xs-12">
+                                    <p style="font-size:10px; color:#03225C;">Lorem ipsum dolor sit amet,
+                                        consectetur adipiscing elit. Sed hendrerit adipiscing blandit. Aliquam
+                                        placerat, velit a fermentum </p>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div>
-          <button id="addUrl" class="pure-button">Add</button>
-        </div>
-      </div>
-      <script src="popup.js"></script>
-    </body>
+    </div>
+</div>
+<!--<div class="form pure-form" id="form">-->
+<!--    <div>-->
+<!--        <label for="Positive" class="pure-radio">-->
+<!--            <input type="radio" name="urltype" value="Positive" id="Positive" checked/>-->
+<!--            Positive</label>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <label for="Negative" class="pure-radio">-->
+<!--            <input type="radio" name="urltype" value="Negative" id="Negative"/>-->
+<!--            Negative</label>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <input type="url" id="url" type="url" placeholder="URL"/>-->
+<!--    </div>-->
+<!--    <div>-->
+<!--        <button id="addUrl" class="pure-button">Add</button>-->
+<!--    </div>-->
+<!--</div>-->
+<!--<script src="popup.js"></script>-->
+</body>
 </html>

@@ -1,10 +1,33 @@
-.form {
-    padding: 26px;
-    display: none;
+
+
+.panel-default > .panel-heading-custom {
+background: #128eff!important; color: #fff; }
+
+.btn-circle {
+  width: 30px!important;
+  height: 30px!important;
+  line-height: 30px!important;
+  text-align: center!important;
+  padding: 0!important;
+  border-radius: 50%!important;
 }
 
-table {
-    font-size: 16px;
+.btn-circle i {
+  position: relative;
+  top: -1px;
+}
+
+.btn-circle-sm {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 0.9rem;
+}
+
+html, body{
+    width: 800px;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 #content {
